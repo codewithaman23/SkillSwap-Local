@@ -1,319 +1,97 @@
-# 🤝 SkillSwap Local
+# SkillSwap Local
 
-<div align="center">
+> **People exchange skills, not just money.**
 
-![SkillSwap Banner](https://img.shields.io/badge/SkillSwap-Local-2563eb?style=for-the-badge&logo=handshake&logoColor=white)
+SkillSwap Local is a community-focused web application designed to help people exchange skills and services without depending entirely on money. The idea is simple: everyone has something valuable to offer. Someone might know how to repair a bicycle, while another person might know how to teach a language, build a website, cook, or help with basic computer skills. SkillSwap Local brings these people together and makes it easier for them to exchange their time and skills.
 
-**"People exchange skills, not just money."**
+The platform allows users to create skill offers and requests, browse available opportunities, search and filter listings, discover compatible matches, communicate through in-app chat, agree on an exchange, and complete the swap. The project also introduces a TimeBank concept, where users can earn time credits by helping others and use those credits when they need help themselves.
 
-_A hyper-accessible, privacy-first mutual aid web platform connecting neighbors to exchange skills and services without financial barriers._
+For example, imagine a user who knows how to teach basic Spanish but needs help repairing a bicycle. Instead of paying for the repair, the user can offer an hour of Spanish lessons to someone who can repair bicycles. After the exchange is completed, the user earns a TimeBank hour that can later be used to receive help from another community member. This creates a simple cycle of **sharing skills, helping others, and receiving help when needed**.
 
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Node.js](https://img.shields.io/badge/Node.js-22.x-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-4.19-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+The project was built around a real community problem: many people need help with small everyday tasks, but traditional service platforms can make these interactions expensive or difficult. At the same time, communities already contain a large amount of unused knowledge and skills. SkillSwap Local attempts to connect these two sides by creating a platform where people can contribute what they know instead of always paying money for what they need.
 
-[Explore Features](#-key-features) • [Quick Start](#-quick-start) • [3-Minute Demo Script](#-3-minute-hackathon-demo-script) • [Architecture](#-system-architecture) • [Privacy Guarantee](#-privacy-by-design)
+The application provides a simple interface for browsing and discovering skill exchanges. Users can view offers and requests, search for specific skills, and filter results by categories, availability, and other relevant information. A smart matching system helps identify potentially compatible users based on the skills they offer, the skills they need, and their availability. This makes it easier to find relevant exchanges without manually searching through every listing.
 
-</div>
+A major part of the platform is the **TimeBank system**. The idea behind TimeBank is that time spent helping another person can become a form of community credit. For example, helping someone for one hour can provide one TimeBank hour. That credit can then be used when the user needs assistance in the future. This encourages participation and creates a system where users can both contribute and receive value from the community.
 
----
+SkillSwap Local also includes an **in-app chat and swap agreement system**. Once users find a suitable exchange, they can communicate through the platform and discuss what each person will provide. The swap agreement clearly shows the two sides of the exchange, such as **"You provide"** and **"You receive."** The exchange can move through different stages, including requested, connected, agreement accepted, in progress, and completed. After completing a swap, users can provide a rating or review, helping build community trust over time.
 
-## 📖 Table of Contents
+Trust and safety are also considered in the design. User profiles can display information such as ratings, completed exchanges, community endorsements, and verification indicators. Users can also report or block other users when necessary. These features are intended to make interactions more transparent and help users make better-informed decisions before starting an exchange.
 
-- [💡 Problem Statement & Solution](#-problem-statement--solution)
-- [✨ Key Features](#-key-features)
-- [🏗️ System Architecture](#️-system-architecture)
-- [🚀 Quick Start Guide](#-quick-start-guide)
-- [⏱️ 3-Minute Hackathon Demo Script](#️-3-minute-hackathon-demo-script)
-- [♿ Accessibility Suite](#-accessibility-suite)
-- [🔒 Privacy By Design](#-privacy-by-design)
-- [📡 REST API Reference](#-rest-api-reference)
-- [📂 Project Structure](#-project-structure)
-- [📜 License](#-license)
+Another important feature is the platform's focus on **accessibility**. SkillSwap Local includes a Low-Bandwidth mode designed for users with slower or limited internet connections. The application can reduce unnecessary visual content and focus on essential information so that the core experience remains usable on slower networks. The project also includes high-contrast options, adjustable font sizes, and OpenDyslexic typography to support different accessibility needs.
 
----
+**Privacy** is another core consideration. The application is designed to avoid unnecessary personal information and does not depend on precise GPS tracking for its main matching experience. Users can communicate through the platform instead of immediately sharing personal contact information. The goal is to provide useful community connections while keeping unnecessary personal data collection to a minimum.
 
-## 💡 Problem Statement & Solution
+The project is built using a modern web development stack. The frontend uses **React and TypeScript**, with **Vite** for development and building and **Tailwind CSS** for styling. The backend uses **Node.js and Express.js** to provide the application's API functionality. The project structure separates frontend components, application state, types, and backend functionality to keep the code organized and easier to maintain.
 
-### ⚠️ The Problem
+## Main Features
 
-Traditional gig economy platforms monetize human cooperation:
+- Skill offers and skill requests
+- Search and filtering
+- Smart skill matching
+- TimeBank-based exchanges
+- In-app chat
+- Swap agreement workflow
+- Ratings and reviews
+- Trust and safety information
+- Report and block functionality
+- Notifications
+- Community impact information
+- Low-Bandwidth mode
+- High-contrast mode
+- Dynamic font scaling
+- OpenDyslexic font support
+- Privacy-focused design
 
-- **Steep platform commissions** (up to 20–30%) and surge pricing lock out lower-income households.
-- **Invasive location tracking** forces users to broadcast precise home addresses and GPS coordinates.
-- **Heavy web apps** fail entirely on low-bandwidth rural connections (2G/3G) or affordable smartphones.
-- **Social isolation & loneliness** thrive in disconnected neighborhoods where residents lack organic avenues to help each other.
+## Technology Stack
 
-### 💡 The Solution: SkillSwap Local
+- **Frontend:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **Data:** Local/JSON-based application data
+- **Version Control:** Git and GitHub
 
-**SkillSwap Local** eliminates financial barriers by transforming time and skill into community currency:
+## Project Structure
 
-- **1 Hour of Help = 1 TimeBank Hour**: Teach someone Spanish for an hour, earn +1 TimeBank Hour, and spend it having your bicycle repaired. Zero money changes hands.
-- **Zero Location Dependencies**: Absolutely no GPS, addresses, or city surveillance. Matches are made via **Availability** and **Skill Compatibility**.
-- **Universal Accessibility**: First-class Low-Bandwidth Mode (text-first, strips heavy assets for 2G/3G), High Contrast, Dynamic Font Scaling, and OpenDyslexic typography.
-
-```
-┌─────────────────┐          Teaches Spanish (1 Hr)          ┌─────────────────┐
-│     Jordan      │ ───────────────────────────────────────> │    Priya S.     │
-│   (You / User)  │ <─────────────────────────────────────── │                 │
-└─────────────────┘        Receives +1 TimeBank Hour         └─────────────────┘
-         │
-         │  Redeems 1 TimeBank Hour for Bicycle Repair
-         ▼
-┌─────────────────┐
-│    Mateo R.     │
-│ (Bicycle Tech)  │
-└─────────────────┘
-```
-
----
-
-## ✨ Key Features
-
-### 🔄 Pure Skill Barter & TimeBank Engine
-
-- **No Cash, No Commission**: All exchanges are peer-to-peer mutual aid.
-- **Auditable TimeBank Ledger**: Every completed swap automatically updates Jordan's balance and records an immutable transaction entry in the member dashboard.
-
-### 🤖 Smart Matchmaking Engine (Algorithmic Compatibility)
-
-- Intelligent scoring algorithm calculates compatibility between what you offer and what other members seek.
-- Highlights high-confidence matches (e.g., **92% Compatibility with Mateo R.**) with explicit algorithmic breakdown:
-  - Skill overlap (Bicycle Repair $\leftrightarrow$ Web Basics / Spanish)
-  - Time availability alignment (Available Today, 5:00 PM – 7:00 PM)
-  - Community trust score (4.9/5.0 with 17 verified swaps)
-
-### 🛡️ Trust & Safety Cards
-
-- Public profile trust cards with verified member badges, community endorsements, average ratings, and completed swap counters.
-- Built-in one-click **Report** and **Block** actions for immediate safety enforcement.
-
-### 💬 In-App Chat & Digital Handshake Agreement
-
-- Turn-by-turn interactive chat drawer with simulated real-time neighbor responses.
-- Explicit **Swap Agreement Card**:
-  - Clear breakdown of: _"You provide"_ vs _"You receive"_.
-  - Handshake confirmation button moving swap state: `Requested` $\rightarrow$ `Connected` $\rightarrow$ `Agreement Accepted` $\rightarrow$ `In Progress` $\rightarrow$ `Completed`.
-- Interactive 5-Star quality review modal that automatically triggers the **+1 TimeBank Hour** reward.
-
-### ⚡ AI-Assisted Request Creation
-
-- Smart real-time keyword parsing in the "+ Post a Swap" modal.
-- Typing _"Need someone to fix my cycle brake"_ auto-detects:
-  - Category: `Repair & Practical Skills`
-  - Type: `Request`
-  - Priority: `🚨 Urgent`
-  - Suggested Skill Tags: `Bicycle Repair`, `Brake Repair`, `Cycle Maintenance`
-
-### 🔔 Notification Center
-
-- Real-time notification drawer with unread counters for swap agreements, messages, and TimeBank credits.
-
-### 📊 Community Impact Dashboard
-
-- Live community metrics showing **1,248 members**, **3,426 swaps completed**, **5,820 hours banked**, and **₹8.4 Lakh estimated financial savings**.
-- Category distribution charts and verified member reviews wall.
-
----
-
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    subgraph Client ["Frontend (React 18 + Vite + TypeScript)"]
-        UI["Accessible Responsive UI (Tailwind CSS)"]
-        CTX["Global AppContext"]
-        A11Y["Accessibility Controller (2G/3G, High Contrast, Dyslexic)"]
-        COMP["Hero, FilterBar, SwapCard, ChatDrawer, Modals"]
-        UI --> CTX
-        A11Y --> UI
-        COMP --> UI
-    end
-
-    subgraph Server ["Backend API (Node.js + Express)"]
-        ROUTER["Express REST Routes (/api/*)"]
-        STORE["Store Engine (JSON / In-Memory Store)"]
-        SMART["Smart Matching Algorithm"]
-        LEDGER["TimeBank Ledger Engine"]
-        ROUTER --> STORE
-        STORE --> SMART
-        STORE --> LEDGER
-    end
-
-    subgraph Data ["Data Persistence Layer"]
-        SEED["seed.json (Preloaded Verified Users & Swaps)"]
-        RUNTIME["store.json (Auto-generated Persistent State)"]
-        STORE <--> SEED
-        STORE <--> RUNTIME
-    end
-
-    Client <-->|REST API + CORS (JSON)| Server
-```
-
----
-
-## 🚀 Quick Start Guide
-
-### Prerequisites
-
-- **Node.js**: v18.0.0 or higher
-- **npm**: v9.0.0 or higher
-
-### 1. Clone & Install
-
-```bash
-# Clone the repository
-git clone https://github.com/codewithaman23/skillswap-local.git
-
-# Navigate into project directory
-cd skillswap-local
-
-# Install dependencies
-npm install
-```
-
-### 2. Run the Application
-
-#### Development Mode (Concurrent Client & Server)
-
-```bash
-npm run dev
-```
-
-- **Frontend Application**: [http://localhost:3000](http://localhost:3000)
-- **Backend API**: [http://localhost:5000](http://localhost:5000)
-
-#### Production Build & Serve
-
-```bash
-# Build React bundle
-npm run build
-
-# Start Express server serving production dist/
-npm start
-```
-
-- **Live App**: [http://localhost:5000](http://localhost:5000)
-
----
-
-## ⏱️ 3-Minute Hackathon Demo Script
-
-Follow this step-by-step presentation flow during your hackathon demo:
-
-|  Step  | Action                       | What to Highlight                                                                                                                     |
-| :----: | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| **1**  | Open `http://localhost:3000` | Point to the Hero Banner: _"People exchange skills, not just money."_ Highlight live community stats (3,400+ swaps, ₹8.4L saved).     |
-| **2**  | Filter & Search              | Type `Bicycle` into search bar or filter by `Available Today` and `Repair & Practical`. Show Mateo R.'s listing.                      |
-| **3**  | Smart Matching               | Click **"92% Match"** on Mateo's card. Explain how the algorithm calculated mutual skill reciprocity.                                 |
-| **4**  | Trust & Safety               | Open the listing to inspect Mateo's verified trust card (4.9 rating, 17 swaps, 8 endorsements).                                       |
-| **5**  | Chat & Handshake             | Click **"Connect"** $\rightarrow$ review reciprocal terms ("You provide" / "You receive") $\rightarrow$ click **"Accept Agreement"**. |
-| **6**  | Complete Swap                | Click **"Mark Swap as Completed"** $\rightarrow$ submit a 5-star review $\rightarrow$ observe **+1 TimeBank Hour** notification!      |
-| **7**  | Personal Dashboard           | Open **Dashboard** to show Jordan's balance updated to **8 Hours** and view the auditable transaction ledger.                         |
-| **8**  | Accessibility Bar            | Toggle **Low-Bandwidth (2G/3G)** (strips heavy graphics) and **High Contrast** modes.                                                 |
-| **9**  | AI Swap Assistant            | Click **"+ Post a Swap"** and type _"Need urgent help fixing my bike"_ to show instant auto-tagging.                                  |
-| **10** | Community Impact             | Click **"Impact"** to present neighborhood resilience metrics and financial savings.                                                  |
-
----
-
-## ♿ Accessibility Suite
-
-Built from the ground up for low-resource environments and users with diverse abilities:
-
-| Mode                      | Benefit                                                                                                        | Implementation                              |
-| :------------------------ | :------------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
-| **Low-Bandwidth (2G/3G)** | Text-first rendering, eliminates non-essential graphics, cuts initial data payload for spotty mobile networks. | Zero heavy media load; minimal CSS repaint. |
-| **High Contrast**         | Maximizes readability for low-vision users under bright sunlight or impaired vision.                           | High-contrast WCAG AAA color palette.       |
-| **Dynamic Font Scaling**  | Toggle `A`, `A+`, `A++` sizing without breaking grid containers or mobile responsiveness.                      | Root-level font scaling variables.          |
-| **OpenDyslexic Font**     | Specialized weighted typography to assist readers with dyslexia.                                               | Accessible custom font styling.             |
-
----
-
-## 🔒 Privacy By Design
-
-SkillSwap Local treats user privacy as a fundamental human right:
-
-- **Zero Location Tracking**: No GPS coordinates, no geofences, no maps. Matching uses availability slots (`Available Now`, `Available Today`, `Available This Week`).
-- **No Personal Contact Leakage**: No phone numbers, email addresses, or social accounts required to swap. All coordination happens inside in-app chat.
-- **Zero Commercial Ad Trackers**: No third-party analytics pixels, data brokers, or advertising trackers.
-- **User Empowerment**: One-click user block and listing report mechanisms with instant local sanitization.
-
----
-
-## 📡 REST API Reference
-
-| Method | Endpoint                      | Description                                                                                          |
-| :----- | :---------------------------- | :--------------------------------------------------------------------------------------------------- |
-| `GET`  | `/api/swaps`                  | Fetch listings with optional `category`, `type`, `search`, `availability`, and `urgentOnly` filters. |
-| `GET`  | `/api/swaps/:id`              | Fetch specific swap details by ID.                                                                   |
-| `POST` | `/api/swaps`                  | Create a new skill swap listing.                                                                     |
-| `GET`  | `/api/swaps/:id/matches`      | Get algorithmic smart matches for a specific listing.                                                |
-| `GET`  | `/api/user/profile`           | Retrieve the authenticated user's profile and TimeBank balance.                                      |
-| `GET`  | `/api/user/ledger`            | Retrieve full TimeBank audit transaction history.                                                    |
-| `POST` | `/api/swaps/:id/complete`     | Mark a swap as completed and credit +1 TimeBank Hour.                                                |
-| `GET`  | `/api/notifications`          | Fetch real-time notification feed.                                                                   |
-| `POST` | `/api/notifications/read-all` | Mark all notifications as read.                                                                      |
-| `GET`  | `/api/impact`                 | Community statistics (members, hours exchanged, money saved).                                        |
-
----
-
-## 📂 Project Structure
-
-```
-skillswap-local/
-├── server/                   # Backend API
+```text
+SkillSwap-Local/
+│
+├── server/
 │   ├── data/
-│   │   ├── seed.json         # Realistic seed dataset (11 listings, 5 users)
-│   │   └── store.js          # In-memory & JSON file persistent store
-│   └── index.js              # Express REST server & static bundle server
-├── src/                      # Frontend Application
-│   ├── components/           # Modular Accessible UI Components
-│   │   ├── AccessibilityBar.tsx  # Low-Bandwidth, Contrast, Font Resizing
-│   │   ├── ChatDrawer.tsx        # In-app chat, handshake terms & reviews
-│   │   ├── CreateSwapModal.tsx   # AI-assisted swap posting form
-│   │   ├── DashboardModal.tsx    # Personal TimeBank ledger & stats
-│   │   ├── FilterBar.tsx         # Category, availability & skill filters
-│   │   ├── HeroBanner.tsx        # Vision headline & search bar
-│   │   ├── ImpactModal.tsx       # Community impact metrics & reviews
-│   │   ├── Navbar.tsx            # Navigation, notification badge, actions
-│   │   ├── NotificationPanel.tsx # Unread notifications drawer
-│   │   ├── PrivacyModal.tsx      # Privacy center & guarantees
-│   │   ├── SmartMatchModal.tsx   # 92% algorithmic compatibility view
-│   │   ├── SwapCard.tsx          # Listing card with trust badges
-│   │   ├── SwapDetailModal.tsx   # Full listing view with safety guidelines
-│   │   └── TrustSafetyCard.tsx   # User reputation & verification card
+│   │   ├── seed.json
+│   │   └── store.js
+│   └── index.js
+│
+├── src/
+│   ├── components/
+│   │   ├── AccessibilityBar.tsx
+│   │   ├── ChatDrawer.tsx
+│   │   ├── CreateSwapModal.tsx
+│   │   ├── DashboardModal.tsx
+│   │   ├── FilterBar.tsx
+│   │   ├── HeroBanner.tsx
+│   │   ├── ImpactModal.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── NotificationPanel.tsx
+│   │   ├── PrivacyModal.tsx
+│   │   ├── SmartMatchModal.tsx
+│   │   ├── SwapCard.tsx
+│   │   ├── SwapDetailModal.tsx
+│   │   └── TrustSafetyCard.tsx
+│   │
 │   ├── context/
-│   │   └── AppContext.tsx    # Global React state & API integration
+│   │   └── AppContext.tsx
+│   │
 │   ├── types/
-│   │   └── index.ts          # TypeScript interfaces & types
-│   ├── App.tsx               # Main layout coordinator
-│   ├── index.css             # Tailwind CSS & accessible design tokens
-│   └── main.tsx              # React application entry point
-├── dist/                     # Pre-compiled production build
-├── package.json              # Dependencies & npm scripts
-├── tsconfig.json             # TypeScript configuration
-├── vite.config.ts            # Vite bundler configuration
-├── LICENSE                   # MIT Open Source License
-└── README.md                 # Complete project documentation
-```
-
----
-
-## 📜 License
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more details.
-
----
-
-<div align="center">
-
-**Built with ❤️ for community resilience and mutual aid.**
-
-_"When communities share their skills, everyone prospers."_
-
-</div>
+│   │   └── index.ts
+│   │
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── vite.config.ts
+├── LICENSE
+└── README.md
