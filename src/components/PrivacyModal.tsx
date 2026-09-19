@@ -6,7 +6,7 @@ import {
   Lock,
   MapPinOff,
   EyeOff,
-  Building,
+  Users,
   CheckCircle,
 } from 'lucide-react';
 
@@ -31,10 +31,10 @@ export const PrivacyModal: React.FC = () => {
             </div>
             <div>
               <h2 id="privacy-modal-title" className="text-lg sm:text-xl font-extrabold text-slate-900">
-                Privacy-First Architecture & Safety
+                Privacy Center: Your Privacy Matters
               </h2>
               <p className="text-xs text-slate-500">
-                Built to protect your digital sovereignty and personal safety.
+                Zero GPS • Zero Commercial Trackers • Full User Control
               </p>
             </div>
           </div>
@@ -49,62 +49,71 @@ export const PrivacyModal: React.FC = () => {
 
         {/* Body */}
         <div className="p-4 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto text-xs sm:text-sm">
-          {/* Key Privacy Pillars */}
+          {/* Core Privacy Pillars */}
           <div className="space-y-3">
-            <div className="p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-xl flex items-start gap-3">
-              <MapPinOff className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+            <div className="p-4 bg-emerald-50/80 border border-emerald-200 rounded-xl flex items-start gap-3">
+              <EyeOff className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold text-slate-900">No Precise GPS Tracking</h3>
+                <h3 className="font-bold text-slate-900">Minimal Personal Information</h3>
                 <p className="text-slate-600 text-xs mt-0.5 leading-relaxed">
-                  We will never ask for your device’s fine GPS coordinates or home address. Listings are categorized solely by district/neighborhood names (e.g. "Mission District" or "Bed-Stuy").
+                  Only the information strictly required to coordinate skill exchanges is displayed. We do not require your legal identity, surname, or personal social media handles.
                 </p>
               </div>
             </div>
 
-            <div className="p-3.5 bg-brand-50/70 border border-brand-200 rounded-xl flex items-start gap-3">
-              <EyeOff className="w-5 h-5 text-brand-700 shrink-0 mt-0.5" />
+            <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-xl flex items-start gap-3">
+              <MapPinOff className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold text-slate-900">Zero Commercial Data Brokers & Trackers</h3>
+                <h3 className="font-bold text-slate-900">No Precise Location or GPS</h3>
                 <p className="text-slate-600 text-xs mt-0.5 leading-relaxed">
-                  SkillSwap contains zero analytics trackers, zero advertising SDKs, and zero social media tracking pixels. Your skill interests and communications remain confidential.
+                  SkillSwap never requests your device's GPS coordinates, street address, or precise geolocation. Exchanges are matched on skill compatibility and availability alone.
                 </p>
               </div>
             </div>
 
-            <div className="p-3.5 bg-indigo-50/70 border border-indigo-200 rounded-xl flex items-start gap-3">
-              <Lock className="w-5 h-5 text-indigo-700 shrink-0 mt-0.5" />
+            <div className="p-4 bg-purple-50/80 border border-purple-200 rounded-xl flex items-start gap-3">
+              <Users className="w-5 h-5 text-purple-700 shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-bold text-slate-900">In-App Contact Protection</h3>
+                <h3 className="font-bold text-slate-900">User Control: Report & Block</h3>
                 <p className="text-slate-600 text-xs mt-0.5 leading-relaxed">
-                  You do not need to share your telephone number or personal social profiles with strangers. All barter coordination, terms, and agreements are handled safely in-app.
+                  You maintain complete authority over who can interact with you. Any user or listing can be reported or blocked instantly with one click.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 bg-amber-50/80 border border-amber-200 rounded-xl flex items-start gap-3">
+              <Lock className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-slate-900">In-Platform Communication</h3>
+                <p className="text-slate-600 text-xs mt-0.5 leading-relaxed">
+                  All discussions, scheduling, and agreement terms occur within our secure in-app chat. There is never any need to share your personal phone number or email address with peers.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Safe Meetup Guide */}
+          {/* Safety Checklist */}
           <div className="border-t border-slate-200 pt-4">
-            <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-              <Building className="w-4 h-4 text-brand-600" />
-              <span>Recommended Safe Neighbor Meetup Checklist</span>
-            </h3>
-
+            <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-brand-600" />
+              <span>Safety Best Practices</span>
+            </h4>
             <ul className="space-y-2 text-xs text-slate-600">
               <li className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Meet in staff-attended public spots like libraries, community centers, or busy cafes.</span>
+                <span>Keep communication inside the platform at all times.</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Schedule during broad daylight hours for outdoor exchanges (e.g., bike repairs in parks).</span>
+                <span>Formalize terms using the digital SkillSwap Agreement Handshake before starting.</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Agree on swap expectations upfront using the in-app SkillSwap Agreement Handshake.</span>
+                <span>Choose verified public meeting places or use in-app remote video.</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Award Community Karma and an honest review after the exchange to build local trust.</span>
+                <span>Leave an honest review to maintain high community trust and safety.</span>
               </li>
             </ul>
           </div>
@@ -123,4 +132,3 @@ export const PrivacyModal: React.FC = () => {
     </div>
   );
 };
-

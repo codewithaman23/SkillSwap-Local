@@ -1,14 +1,25 @@
 export type SwapType = 'offer' | 'request';
-export type UrgencyLevel = 'flexible' | 'this-week' | 'this-weekend' | 'urgent';
+export type UrgencyLevel = 'normal' | 'urgent';
+export type AvailabilityLevel = 'now' | 'today' | 'this-week' | 'unavailable';
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
+
+export type SwapStatus = 'open' | 'in-progress' | 'completed';
+export type AgreementStatus = 'pending' | 'connected' | 'agreement_accepted' | 'in_progress' | 'completed';
 
 export interface Author {
   id: string;
   name: string;
-  neighborhood: string;
   swapsCompleted: number;
+  hoursExchanged: number;
   rating: number;
   avatar: string;
   badges: string[];
+  verifiedMember: boolean;
+  endorsementsCount: number;
+  availability: AvailabilityLevel;
+  preferredTime: string;
+  skillsOffered: string[];
+  skillsLearned: string[];
 }
 
 export interface Swap {
@@ -19,41 +30,66 @@ export interface Swap {
   offering: string;
   seeking: string;
   description: string;
-  neighborhood?: string;
   author: Author;
   urgency: UrgencyLevel;
-  preferredMeeting: string;
-  mode: 'in-person' | 'remote' | 'hybrid';
+  availability: AvailabilityLevel;
+  preferredTime: string;
+  skillLevel: SkillLevel;
+  mode: 'in-person' | 'remote' | 'flexible';
+  safeMeetingPreference: string;
   createdAt: string;
-  status: 'open' | 'in-progress' | 'completed';
+  status: SwapStatus;
   interestedCount: number;
-}
-
-export interface Neighborhood {
-  id: string;
-  name: string;
-  city: string;
-  activeCount: number;
+  matchScore?: number;
 }
 
 export interface Category {
   id: string;
   name: string;
   icon: string;
-  color: string;
+  description: string;
+  skills: string[];
 }
 
 export interface CurrentUser {
   id: string;
   name: string;
-  neighborhoodId: string;
-  neighborhoodName: string;
   avatar: string;
   karmaHours: number;
+  totalLifetimeHours: number;
   swapsCompleted: number;
+  hoursExchanged: number;
+  skillsOfferedCount: number;
+  skillsLearnedCount: number;
+  rating: number;
   memberSince: string;
   badges: string[];
-  privacySetting: string;
+  endorsementsCount: number;
+  availability: AvailabilityLevel;
+  preferredTime: string;
+  estimatedMoneySavedINR: number;
+}
+
+export interface TimeBankTransaction {
+  id: string;
+  amount: number;
+  type: 'earned' | 'spent';
+  description: string;
+  timestamp: string;
+  partnerName: string;
+}
+
+export interface NotificationItem {
+  id: string;
+  title: string;
+  message: string;
+  type: 'match' | 'agreement' | 'message' | 'karma' | 'system';
+  read: boolean;
+  timestamp: string;
+  actionData?: {
+    partnerId?: string;
+    swapId?: string;
+  };
 }
 
 export interface Message {
@@ -64,10 +100,12 @@ export interface Message {
 }
 
 export interface SwapAgreement {
-  status: 'proposed' | 'accepted' | 'completed';
+  status: AgreementStatus;
   terms: string;
-  location: string;
-  date: string;
+  durationHours: number;
+  userProvidedSkill: string;
+  userReceivedSkill: string;
+  scheduledTime?: string;
   proposedBy: string;
   proposedAt?: string;
   acceptedAt?: string;
@@ -79,19 +117,30 @@ export interface Chat {
   partnerId: string;
   partnerName: string;
   partnerAvatar: string;
-  partnerNeighborhood: string;
   swapId?: string | null;
   swapTitle?: string;
+  status: AgreementStatus;
   agreement?: SwapAgreement | null;
   messages: Message[];
 }
 
+export interface SmartMatch {
+  swap: Swap;
+  matchPercentage: number;
+  matchedSkill: string;
+  reasons: string[];
+}
+
 export interface ImpactStats {
+  communityMembers: number;
+  successfulSwaps: number;
   hoursExchanged: number;
-  moneySavedEstimateUSD: number;
-  neighborsConnected: number;
-  activeNeighborhoods: number;
+  moneySavedEstimateINR: number;
+  positiveReviewsPercentage: number;
+  skillsShared: number;
+  communityConnections: number;
   communityResilienceScore: string;
+  topCategories: { name: string; percentage: number; count: number }[];
 }
 
 export interface Review {
@@ -103,12 +152,9 @@ export interface Review {
   comment: string;
   badge: string;
   date: string;
-}
-
-export interface MeetupSpot {
-  name: string;
-  type: string;
-  badge: string;
+  skillQuality: number;
+  communicationQuality: number;
+  reliability: number;
 }
 
 export interface A11ySettings {
@@ -116,13 +162,15 @@ export interface A11ySettings {
   fontSize: 'normal' | 'large' | 'xlarge';
   lowBandwidth: boolean;
   dyslexicFont: boolean;
+  reducedMotion: boolean;
 }
 
 export interface FilterState {
   type: 'all' | 'offer' | 'request';
   category: string;
-  neighborhoodId: string;
   search: string;
-  urgency: string;
+  availability: string;
+  skillLevel: string;
+  urgentOnly: boolean;
+  minRating: number;
 }
-

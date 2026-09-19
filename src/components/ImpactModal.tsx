@@ -5,7 +5,6 @@ import {
   Clock,
   DollarSign,
   Users,
-  ShieldCheck,
   Star,
   Award,
   HeartHandshake,
@@ -26,104 +25,118 @@ export const ImpactModal: React.FC = () => {
     >
       <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-8 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 sm:p-6 border-b border-slate-100 bg-gradient-to-r from-brand-700 to-emerald-600 text-white flex items-center justify-between">
+        <div className="p-4 sm:p-6 border-b border-slate-100 bg-gradient-to-r from-brand-800 via-emerald-700 to-teal-700 text-white flex items-center justify-between">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-brand-100 uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-semibold text-brand-200 uppercase tracking-wider">
               <Award className="w-4 h-4" />
-              <span>Hyperlocal Community Resilience Index</span>
+              <span>Collective Mutual Aid Ledger</span>
             </div>
             <h2 id="impact-modal-title" className="text-xl sm:text-2xl font-black mt-1">
-              Community Impact & TimeBank Ledger
+              Community Impact Dashboard
             </h2>
           </div>
           <button
             onClick={() => setIsImpactModalOpen(false)}
-            className="p-1.5 text-brand-100 hover:text-white hover:bg-brand-600/60 rounded-lg transition"
+            className="p-1.5 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Content */}
+        {/* Content Body */}
         <div className="p-4 sm:p-6 space-y-6 max-h-[75vh] overflow-y-auto">
           {/* Key Metric Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="bg-brand-50 border border-brand-200 rounded-xl p-3 text-center">
-              <Clock className="w-5 h-5 text-brand-700 mx-auto mb-1" />
-              <div className="text-xl font-black text-brand-900">
-                {impactStats.hoursExchanged} hrs
+              <Users className="w-5 h-5 text-brand-700 mx-auto mb-1" />
+              <div className="text-xl font-black text-brand-950">
+                {impactStats.communityMembers.toLocaleString()}
               </div>
-              <div className="text-[11px] font-medium text-brand-700">Time Exchanged</div>
+              <div className="text-[11px] font-bold text-brand-700">Community Members</div>
+            </div>
+
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center">
+              <HeartHandshake className="w-5 h-5 text-emerald-700 mx-auto mb-1" />
+              <div className="text-xl font-black text-emerald-950">
+                {impactStats.successfulSwaps.toLocaleString()}
+              </div>
+              <div className="text-[11px] font-bold text-emerald-700">Successful Swaps</div>
+            </div>
+
+            <div className="bg-teal-50 border border-teal-200 rounded-xl p-3 text-center">
+              <Clock className="w-5 h-5 text-teal-700 mx-auto mb-1" />
+              <div className="text-xl font-black text-teal-950">
+                {impactStats.hoursExchanged.toLocaleString()} hrs
+              </div>
+              <div className="text-[11px] font-bold text-teal-700">Hours Exchanged</div>
             </div>
 
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
               <DollarSign className="w-5 h-5 text-amber-700 mx-auto mb-1" />
-              <div className="text-xl font-black text-amber-900">
-                ${impactStats.moneySavedEstimateUSD.toLocaleString()}
+              <div className="text-xl font-black text-amber-950">
+                ₹8.4 Lakh
               </div>
-              <div className="text-[11px] font-medium text-amber-700">Money Saved</div>
-            </div>
-
-            <div className="bg-teal-50 border border-teal-200 rounded-xl p-3 text-center">
-              <Users className="w-5 h-5 text-teal-700 mx-auto mb-1" />
-              <div className="text-xl font-black text-teal-900">
-                {impactStats.neighborsConnected}
-              </div>
-              <div className="text-[11px] font-medium text-teal-700">Connections</div>
-            </div>
-
-            <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-3 text-center">
-              <ShieldCheck className="w-5 h-5 text-indigo-700 mx-auto mb-1" />
-              <div className="text-xl font-black text-indigo-900">
-                {impactStats.communityResilienceScore}
-              </div>
-              <div className="text-[11px] font-medium text-indigo-700">Trust Score</div>
+              <div className="text-[11px] font-bold text-amber-700">Estimated Savings</div>
             </div>
           </div>
 
-          {/* Social Value Statement */}
+          {/* Secondary Stats Row */}
+          <div className="grid grid-cols-3 gap-2 text-center text-xs">
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <div className="text-lg font-black text-slate-900">{impactStats.skillsShared.toLocaleString()}</div>
+              <span className="text-slate-500 font-semibold text-[10px] uppercase">Skills Shared</span>
+            </div>
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <div className="text-lg font-black text-slate-900">{impactStats.communityConnections.toLocaleString()}</div>
+              <span className="text-slate-500 font-semibold text-[10px] uppercase">Connections Made</span>
+            </div>
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
+              <div className="text-lg font-black text-emerald-600">{impactStats.communityResilienceScore}</div>
+              <span className="text-slate-500 font-semibold text-[10px] uppercase">Resilience Score</span>
+            </div>
+          </div>
+
+          {/* Core Mission Banner */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-            <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <h3 className="text-xs font-black text-slate-800 uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <HeartHandshake className="w-4 h-4 text-brand-600" />
-              <span>How Hyperlocal Swapping Solves Critical Problems</span>
+              <span>"People exchange skills, not just money."</span>
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              In an era of rising inflation and high loneliness rates, commercial services charge steep rates for small domestic tasks. SkillSwap Local revives the traditional barter system: seniors share life wisdom and cooking in exchange for tech support; students trade tutoring for bike repairs. No cash transactions, no financial barriers—just mutual community aid.
+              When neighbors trade skills without cash transactions, household costs shrink, social isolation dissolves, and communities become self-reliant. Every hour of assistance is valued equally under our TimeBank system.
             </p>
           </div>
 
-          {/* Top Swapped Skills */}
+          {/* Top Exchanged Skill Categories */}
           <div>
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-slate-400" />
-              <span>Most In-Demand Neighborhood Exchanges</span>
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-slate-400" />
+              <span>Most Exchanged Skill Categories</span>
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
-                <span className="font-bold text-slate-800 block">Languages</span>
-                <span className="text-[11px] text-emerald-600 font-medium">32% of swaps</span>
-              </div>
-              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
-                <span className="font-bold text-slate-800 block">Home & Repairs</span>
-                <span className="text-[11px] text-amber-600 font-medium">28% of swaps</span>
-              </div>
-              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
-                <span className="font-bold text-slate-800 block">Digital Literacy</span>
-                <span className="text-[11px] text-blue-600 font-medium">22% of swaps</span>
-              </div>
-              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
-                <span className="font-bold text-slate-800 block">Gardening & Food</span>
-                <span className="text-[11px] text-green-600 font-medium">18% of swaps</span>
-              </div>
+            <div className="space-y-2">
+              {impactStats.topCategories.map((cat, idx) => (
+                <div key={idx} className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                  <div className="flex items-center justify-between text-xs font-bold mb-1">
+                    <span className="text-slate-800">{cat.name}</span>
+                    <span className="text-emerald-700">{cat.percentage}% ({cat.count} swaps)</span>
+                  </div>
+                  <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-brand-600 to-emerald-500 rounded-full"
+                      style={{ width: `${cat.percentage}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Recent Neighbor Reviews & Trust Endorsements */}
+          {/* Community Endorsements Wall */}
           <div>
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-              <span>Recent Verified Neighbor Endorsements</span>
+            <h3 className="text-xs font-black text-slate-500 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+              <Star className="w-4 h-4 text-amber-500 fill-amber-400" />
+              <span>Verified Community Endorsements</span>
             </h3>
 
             <div className="space-y-2.5">
@@ -133,12 +146,12 @@ export const ImpactModal: React.FC = () => {
                     <span className="font-bold text-slate-900">
                       {rev.fromName} <span className="font-normal text-slate-400">swapped with</span> {rev.toName}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold text-[10px]">
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">
                       {rev.badge}
                     </span>
                   </div>
                   <p className="text-xs text-slate-700 italic">"{rev.comment}"</p>
-                  <div className="mt-1 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="mt-1.5 flex items-center justify-between text-[10px] text-slate-400 font-medium">
                     <span>Swap: {rev.swapTitle}</span>
                     <span>{rev.date}</span>
                   </div>
@@ -161,4 +174,3 @@ export const ImpactModal: React.FC = () => {
     </div>
   );
 };
-

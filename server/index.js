@@ -11,8 +11,8 @@ app.use(express.json());
 
 // 1. Swaps API
 app.get('/api/swaps', (req, res) => {
-  const { category, type, neighborhoodId, search, urgency } = req.query;
-  const swaps = store.getSwaps({ category, type, neighborhoodId, search, urgency });
+  const { category, type, search, availability, skillLevel, urgentOnly } = req.query;
+  const swaps = store.getSwaps({ category, type, search, availability, skillLevel, urgentOnly });
   res.json(swaps);
 });
 
@@ -23,10 +23,25 @@ app.get('/api/swaps/:id', (req, res) => {
 });
 
 app.post('/api/swaps', (req, res) => {
-  const { title, type, category, offering, seeking, description, neighborhood, urgency, preferredMeeting, mode } = req.body;
+  const {
+    title,
+    type,
+    category,
+    offering,
+    seeking,
+    description,
+    urgency,
+    availability,
+    preferredTime,
+    skillLevel,
+    mode,
+    safeMeetingPreference
+  } = req.body;
+
   if (!title || !offering || !seeking) {
     return res.status(400).json({ error: 'Title, offering, and seeking are required' });
   }
+
   const newSwap = store.createSwap({
     title,
     type,
@@ -34,28 +49,49 @@ app.post('/api/swaps', (req, res) => {
     offering,
     seeking,
     description,
-    neighborhood,
     urgency,
-    preferredMeeting,
-    mode
+    availability,
+    preferredTime,
+    skillLevel,
+    mode,
+    safeMeetingPreference
   });
+
   res.status(201).json(newSwap);
 });
 
-// 2. Neighborhoods & Metadata
-app.get('/api/neighborhoods', (req, res) => {
-  res.json(store.getNeighborhoods());
+// 2. Smart Skill Matching API
+app.get('/api/smart-match/:swapId', (req, res) => {
+  const swap = store.getSwapById(req.params.swapId);
+  if (!swap) return res.status(404).json({ error: 'Target swap not found' });
+  const matches = store.getSmartMatchesForSwap(swap);
+  res.json(matches);
 });
 
+// 3. Notifications API
+app.get('/api/notifications', (req, res) => {
+  res.json(store.getNotifications());
+});
+
+app.post('/api/notifications/:id/read', (req, res) => {
+  res.json(store.markNotificationRead(req.params.id));
+});
+
+app.post('/api/notifications/read-all', (req, res) => {
+  res.json(store.markAllNotificationsRead());
+});
+
+// 4. TimeBank Transactions API
+app.get('/api/timebank/transactions', (req, res) => {
+  res.json(store.getTimeBankTransactions());
+});
+
+// 5. Categories & Metadata
 app.get('/api/categories', (req, res) => {
   res.json(store.getCategories());
 });
 
-app.get('/api/meetup-spots', (req, res) => {
-  res.json(store.getMeetupSpots());
-});
-
-// 3. Current User
+// 6. Current User
 app.get('/api/current-user', (req, res) => {
   res.json(store.getCurrentUser());
 });
@@ -65,7 +101,7 @@ app.put('/api/current-user', (req, res) => {
   res.json(updated);
 });
 
-// 4. In-App Chat & Meetup Agreements
+// 7. Chats, Digital Handshake & Swap Lifecycle
 app.get('/api/chats', (req, res) => {
   res.json(store.getChats());
 });
@@ -83,36 +119,32 @@ app.post('/api/chats/:partnerId/messages', (req, res) => {
     return res.status(400).json({ error: 'Message text cannot be empty' });
   }
 
-  // Record user's sent message
   const result = store.sendMessage(partnerId, text.trim(), 'usr_me');
 
-  // Smart neighborhood neighbor auto-response simulation for realistic hackathon demos!
+  // Realistic responsive reply simulation for hackathon demo!
   const simulatedResponses = [
-    "That sounds perfect! What time of day works best for you?",
-    "Great! Shall we meet at the local public library or the community garden?",
-    "Sounds like a plan! I can bring all the materials we need.",
-    "Awesome. I'll propose a SkillSwap agreement so we can formalize the swap terms.",
-    "Thanks for reaching out! Looking forward to connecting and swapping skills."
+    "Hi Jordan! That sounds great. I'm available today around 5:30 PM with all required tools.",
+    "Perfect! I've accepted our 1-Hour SkillSwap agreement so we can get started right away.",
+    "Awesome! Let's meet at the community center or connect via in-app video.",
+    "Sounds like a plan! Looking forward to helping you with the repair and learning from you."
   ];
 
   setTimeout(() => {
-    // Check if we should reply
     const randomReply = simulatedResponses[Math.floor(Math.random() * simulatedResponses.length)];
     store.sendMessage(partnerId, randomReply, partnerId);
-  }, 1200);
+  }, 1000);
 
   res.json(result);
 });
 
 app.post('/api/chats/:partnerId/agreement', (req, res) => {
-  const { terms, location, date } = req.body;
-  if (!terms) return res.status(400).json({ error: 'Terms are required for swap agreement' });
-
+  const { terms, durationHours, userProvidedSkill, userReceivedSkill, scheduledTime } = req.body;
   const chat = store.proposeAgreement(req.params.partnerId, {
     terms,
-    location,
-    date,
-    proposedBy: 'usr_me'
+    durationHours,
+    userProvidedSkill,
+    userReceivedSkill,
+    scheduledTime
   });
   res.json(chat);
 });
@@ -123,12 +155,34 @@ app.post('/api/chats/:partnerId/accept-agreement', (req, res) => {
 });
 
 app.post('/api/chats/:partnerId/complete-swap', (req, res) => {
-  const { rating, comment, badge } = req.body;
-  const outcome = store.completeSwap(req.params.partnerId, { rating, comment, badge });
+  const { rating, comment, badge, skillQuality, communicationQuality, reliability } = req.body;
+  const outcome = store.completeSwap(req.params.partnerId, {
+    rating,
+    comment,
+    badge,
+    skillQuality,
+    communicationQuality,
+    reliability
+  });
   res.json(outcome);
 });
 
-// 5. Community Impact & Reviews
+// 8. Safety & Trust Actions
+app.post('/api/users/:id/report', (req, res) => {
+  const { reason } = req.body;
+  res.json(store.reportUser(req.params.id, reason));
+});
+
+app.post('/api/users/:id/block', (req, res) => {
+  res.json(store.blockUser(req.params.id));
+});
+
+app.post('/api/swaps/:id/report', (req, res) => {
+  const { reason } = req.body;
+  res.json(store.reportListing(req.params.id, reason));
+});
+
+// 9. Community Impact & Reviews
 app.get('/api/impact', (req, res) => {
   res.json(store.getImpactStats());
 });
@@ -156,4 +210,3 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`[SkillSwap Server] Running on http://localhost:${PORT}`);
 });
-

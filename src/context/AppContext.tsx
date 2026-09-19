@@ -1,26 +1,24 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   Swap,
-  Neighborhood,
   Category,
   CurrentUser,
   Chat,
   ImpactStats,
   Review,
-  MeetupSpot,
   A11ySettings,
   FilterState,
+  NotificationItem,
 } from '../types';
 
 interface AppContextType {
   // Data
   swaps: Swap[];
-  neighborhoods: Neighborhood[];
   categories: Category[];
   currentUser: CurrentUser | null;
   impactStats: ImpactStats | null;
-  meetupSpots: MeetupSpot[];
   reviews: Review[];
+  notifications: NotificationItem[];
   isLoading: boolean;
   error: string | null;
 
@@ -29,15 +27,23 @@ interface AppContextType {
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   resetFilters: () => void;
 
-  // Modals & Active Views
+  // Modals & Panels
   isCreateModalOpen: boolean;
   setIsCreateModalOpen: (open: boolean) => void;
   selectedSwapDetail: Swap | null;
   setSelectedSwapDetail: (swap: Swap | null) => void;
+  selectedSmartMatchTarget: Swap | null;
+  setSelectedSmartMatchTarget: (swap: Swap | null) => void;
   isImpactModalOpen: boolean;
   setIsImpactModalOpen: (open: boolean) => void;
   isPrivacyModalOpen: boolean;
   setIsPrivacyModalOpen: (open: boolean) => void;
+  isDashboardOpen: boolean;
+  setIsDashboardOpen: (open: boolean) => void;
+  isNotificationsOpen: boolean;
+  setIsNotificationsOpen: (open: boolean) => void;
+
+  // Chat
   activeChatPartnerId: string | null;
   setActiveChatPartnerId: (id: string | null) => void;
   activeChat: Chat | null;
@@ -53,12 +59,16 @@ interface AppContextType {
 
   // Actions
   createNewSwap: (swapData: Partial<Swap>) => Promise<boolean>;
-  openChatWithNeighbor: (neighborId: string, swapId?: string) => void;
+  openChatWithNeighbor: (neighborId: string, _swapId?: string) => void;
   sendMessage: (text: string) => Promise<boolean>;
-  proposeAgreement: (terms: string, location: string, date: string) => Promise<boolean>;
+  proposeAgreement: (terms: string, durationHours: number, userProvidedSkill: string, userReceivedSkill: string, scheduledTime: string) => Promise<boolean>;
   acceptAgreement: () => Promise<boolean>;
-  completeSwapAndReview: (rating: number, comment: string, badge: string) => Promise<boolean>;
-  switchNeighborhood: (neighborhoodId: string) => void;
+  completeSwapAndReview: (rating: number, comment: string, badge: string, skillQuality?: number, communicationQuality?: number, reliability?: number) => Promise<boolean>;
+  reportUser: (userId: string, reason: string) => Promise<boolean>;
+  blockUser: (userId: string) => Promise<boolean>;
+  reportListing: (swapId: string, reason: string) => Promise<boolean>;
+  markNotificationRead: (id: string) => Promise<void>;
+  markAllNotificationsRead: () => Promise<void>;
   refreshData: () => Promise<void>;
 }
 
@@ -67,27 +77,30 @@ const defaultA11y: A11ySettings = {
   fontSize: 'normal',
   lowBandwidth: false,
   dyslexicFont: false,
+  reducedMotion: false,
 };
 
 const defaultFilters: FilterState = {
   type: 'all',
   category: 'all',
-  neighborhoodId: 'all',
   search: '',
-  urgency: 'all',
+  availability: 'all',
+  skillLevel: 'all',
+  urgentOnly: false,
+  minRating: 0,
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [swaps, setSwaps] = useState<Swap[]>([]);
-  const [neighborhoods, setNeighborhoods] = useState<Neighborhood[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [impactStats, setImpactStats] = useState<ImpactStats | null>(null);
-  const [meetupSpots, setMeetupSpots] = useState<MeetupSpot[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [allChats, setAllChats] = useState<Chat[]>([]);
+
   const [activeChatPartnerId, setActiveChatPartnerId] = useState<string | null>(null);
   const [activeChat, setActiveChat] = useState<Chat | null>(null);
 
@@ -100,10 +113,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Modals
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedSwapDetail, setSelectedSwapDetail] = useState<Swap | null>(null);
+  const [selectedSmartMatchTarget, setSelectedSmartMatchTarget] = useState<Swap | null>(null);
   const [isImpactModalOpen, setIsImpactModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
-  // Accessibility State (persisted in localStorage)
+  // Accessibility State
   const [a11y, setA11y] = useState<A11ySettings>(() => {
     try {
       const saved = localStorage.getItem('skillswap_a11y');
@@ -146,37 +162,35 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const toggleDyslexicFont = () => setA11y(prev => ({ ...prev, dyslexicFont: !prev.dyslexicFont }));
   const resetA11y = () => setA11y(defaultA11y);
 
-  // Fetch Initial Data
+  // Fetch Data
   const fetchData = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Build query string
       const params = new URLSearchParams();
-      if (filters.category !== 'all') params.append('category', filters.category);
       if (filters.type !== 'all') params.append('type', filters.type);
-      if (filters.neighborhoodId !== 'all') params.append('neighborhoodId', filters.neighborhoodId);
+      if (filters.category !== 'all') params.append('category', filters.category);
+      if (filters.availability !== 'all') params.append('availability', filters.availability);
+      if (filters.skillLevel !== 'all') params.append('skillLevel', filters.skillLevel);
+      if (filters.urgentOnly) params.append('urgentOnly', 'true');
       if (filters.search) params.append('search', filters.search);
-      if (filters.urgency !== 'all') params.append('urgency', filters.urgency);
 
-      const [swapsRes, neighRes, catRes, userRes, impactRes, meetupRes, revRes, chatsRes] = await Promise.all([
+      const [swapsRes, catRes, userRes, impactRes, revRes, notifRes, chatsRes] = await Promise.all([
         fetch(`/api/swaps?${params.toString()}`),
-        fetch('/api/neighborhoods'),
         fetch('/api/categories'),
         fetch('/api/current-user'),
         fetch('/api/impact'),
-        fetch('/api/meetup-spots'),
         fetch('/api/reviews'),
+        fetch('/api/notifications'),
         fetch('/api/chats'),
       ]);
 
       if (swapsRes.ok) setSwaps(await swapsRes.json());
-      if (neighRes.ok) setNeighborhoods(await neighRes.json());
       if (catRes.ok) setCategories(await catRes.json());
       if (userRes.ok) setCurrentUser(await userRes.json());
       if (impactRes.ok) setImpactStats(await impactRes.json());
-      if (meetupRes.ok) setMeetupSpots(await meetupRes.json());
       if (revRes.ok) setReviews(await revRes.json());
+      if (notifRes.ok) setNotifications(await notifRes.json());
       if (chatsRes.ok) setAllChats(await chatsRes.json());
     } catch (err: any) {
       console.error('Data fetch error:', err);
@@ -210,16 +224,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     fetchChat();
-    // Poll chat every 3 seconds for instant responsive chatter during demos
-    const timer = setInterval(fetchChat, 3000);
+    const timer = setInterval(fetchChat, 2500);
     return () => clearInterval(timer);
   }, [activeChatPartnerId]);
 
   const resetFilters = () => setFilters(defaultFilters);
-
-  const switchNeighborhood = (neighborhoodId: string) => {
-    setFilters(prev => ({ ...prev, neighborhoodId }));
-  };
 
   const createNewSwap = async (swapData: Partial<Swap>): Promise<boolean> => {
     try {
@@ -232,6 +241,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         const created = await res.json();
         setSwaps(prev => [created, ...prev]);
         setIsCreateModalOpen(false);
+        // Refresh notifications in case smart match was generated
+        fetch('/api/notifications').then(r => r.json()).then(setNotifications);
         return true;
       }
       return false;
@@ -243,6 +254,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const openChatWithNeighbor = (neighborId: string, _swapId?: string) => {
     setSelectedSwapDetail(null);
+    setSelectedSmartMatchTarget(null);
     setActiveChatPartnerId(neighborId);
   };
 
@@ -266,13 +278,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const proposeAgreement = async (terms: string, location: string, date: string): Promise<boolean> => {
+  const proposeAgreement = async (
+    terms: string,
+    durationHours: number,
+    userProvidedSkill: string,
+    userReceivedSkill: string,
+    scheduledTime: string
+  ): Promise<boolean> => {
     if (!activeChatPartnerId) return false;
     try {
       const res = await fetch(`/api/chats/${activeChatPartnerId}/agreement`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ terms, location, date }),
+        body: JSON.stringify({ terms, durationHours, userProvidedSkill, userReceivedSkill, scheduledTime }),
       });
       if (res.ok) {
         const updatedChat = await res.json();
@@ -295,6 +313,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (res.ok) {
         const updatedChat = await res.json();
         setActiveChat(updatedChat);
+        // Refresh notifications
+        fetch('/api/notifications').then(r => r.json()).then(setNotifications);
         return true;
       }
       return false;
@@ -304,13 +324,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const completeSwapAndReview = async (rating: number, comment: string, badge: string): Promise<boolean> => {
+  const completeSwapAndReview = async (
+    rating: number,
+    comment: string,
+    badge: string,
+    skillQuality: number = 5,
+    communicationQuality: number = 5,
+    reliability: number = 5
+  ): Promise<boolean> => {
     if (!activeChatPartnerId) return false;
     try {
       const res = await fetch(`/api/chats/${activeChatPartnerId}/complete-swap`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ rating, comment, badge }),
+        body: JSON.stringify({ rating, comment, badge, skillQuality, communicationQuality, reliability }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -327,16 +354,79 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
+  const reportUser = async (userId: string, reason: string): Promise<boolean> => {
+    try {
+      const res = await fetch(`/api/users/${userId}/report`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason }),
+      });
+      return res.ok;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
+
+  const blockUser = async (userId: string): Promise<boolean> => {
+    try {
+      const res = await fetch(`/api/users/${userId}/block`, {
+        method: 'POST',
+      });
+      return res.ok;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
+
+  const reportListing = async (swapId: string, reason: string): Promise<boolean> => {
+    try {
+      const res = await fetch(`/api/swaps/${swapId}/report`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason }),
+      });
+      return res.ok;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
+
+  const markNotificationRead = async (id: string): Promise<void> => {
+    try {
+      const res = await fetch(`/api/notifications/${id}/read`, { method: 'POST' });
+      if (res.ok) {
+        const data = await res.json();
+        setNotifications(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const markAllNotificationsRead = async (): Promise<void> => {
+    try {
+      const res = await fetch('/api/notifications/read-all', { method: 'POST' });
+      if (res.ok) {
+        const data = await res.json();
+        setNotifications(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
         swaps,
-        neighborhoods,
         categories,
         currentUser,
         impactStats,
-        meetupSpots,
         reviews,
+        notifications,
         isLoading,
         error,
         filters,
@@ -346,10 +436,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setIsCreateModalOpen,
         selectedSwapDetail,
         setSelectedSwapDetail,
+        selectedSmartMatchTarget,
+        setSelectedSmartMatchTarget,
         isImpactModalOpen,
         setIsImpactModalOpen,
         isPrivacyModalOpen,
         setIsPrivacyModalOpen,
+        isDashboardOpen,
+        setIsDashboardOpen,
+        isNotificationsOpen,
+        setIsNotificationsOpen,
         activeChatPartnerId,
         setActiveChatPartnerId,
         activeChat,
@@ -366,7 +462,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         proposeAgreement,
         acceptAgreement,
         completeSwapAndReview,
-        switchNeighborhood,
+        reportUser,
+        blockUser,
+        reportListing,
+        markNotificationRead,
+        markAllNotificationsRead,
         refreshData: fetchData,
       }}
     >
@@ -380,4 +480,3 @@ export const useApp = () => {
   if (!context) throw new Error('useApp must be used within an AppProvider');
   return context;
 };
-
