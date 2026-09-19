@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-scale: 1rem;
+  }
+
+  body {
+    font-size: var(--font-scale);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+/* Accessibility: Font Scaling */
+html.font-scale-large {
+  font-size: 18px;
+}
+
+html.font-scale-xlarge {
+  font-size: 20px;
+}
+
+/* Accessibility: Dyslexic friendly font */
+html.font-dyslexic * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.03em;
+  word-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+/* Accessibility: High Contrast Mode */
+html.high-contrast {
+  filter: contrast(115%);
+}
+
+html.high-contrast body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.high-contrast .bg-white,
+html.high-contrast .bg-slate-50,
+html.high-contrast .bg-slate-100 {
+  background-color: #121212 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.high-contrast .text-slate-600,
+html.high-contrast .text-slate-500,
+html.high-contrast .text-slate-700,
+html.high-contrast .text-slate-400 {
+  color: #e2e8f0 !important;
+}
+
+html.high-contrast button,
+html.high-contrast a,
+html.high-contrast input,
+html.high-contrast select {
+  outline: 2px solid #ffffff !important;
+}
+
+/* Accessibility: Low Bandwidth Mode */
+html.low-bandwidth * {
+  animation: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+}
+
+html.low-bandwidth img {
+  display: none !important;
+}
+
+html.low-bandwidth .low-bandwidth-placeholder {
+  display: flex !important;
+}
+
+/* Visible focus outline for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #16a34a !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip link styling */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #16a34a;
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 9999;
+  font-weight: bold;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+

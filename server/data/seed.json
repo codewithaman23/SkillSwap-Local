@@ -1,0 +1,317 @@
+{
+  "neighborhoods": [
+    { "id": "mission-sf", "name": "Mission District", "city": "San Francisco, CA", "activeCount": 18 },
+    { "id": "bedstuy-nyc", "name": "Bedford-Stuyvesant", "city": "Brooklyn, NY", "activeCount": 24 },
+    { "id": "eastaustin-tx", "name": "East Austin", "city": "Austin, TX", "activeCount": 15 },
+    { "id": "connaught-delhi", "name": "Central / Connaught", "city": "New Delhi, DL", "activeCount": 21 },
+    { "id": "downtown-toronto", "name": "Kensington Market", "city": "Toronto, ON", "activeCount": 14 }
+  ],
+  "categories": [
+    { "id": "language", "name": "Languages & Culture", "icon": "Languages", "color": "emerald" },
+    { "id": "repair", "name": "Home & Repair", "icon": "Wrench", "color": "amber" },
+    { "id": "gardening", "name": "Gardening & Food", "icon": "Sprout", "color": "green" },
+    { "id": "digital", "name": "Tech & Digital Literacy", "icon": "Laptop", "color": "blue" },
+    { "id": "arts", "name": "Arts & Handcrafts", "icon": "Palette", "color": "purple" },
+    { "id": "wellness", "name": "Wellness & Movement", "icon": "HeartHandshake", "color": "rose" },
+    { "id": "music", "name": "Music & Audio", "icon": "Music", "color": "indigo" },
+    { "id": "academics", "name": "Tutoring & Learning", "icon": "GraduationCap", "color": "cyan" }
+  ],
+  "currentUser": {
+    "id": "usr_me",
+    "name": "Jordan (You)",
+    "neighborhoodId": "mission-sf",
+    "neighborhoodName": "Mission District, San Francisco",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    "karmaHours": 4,
+    "swapsCompleted": 3,
+    "memberSince": "May 2024",
+    "badges": ["Verified Neighbor", "Punctual", "Patient Guide"],
+    "privacySetting": "City/Neighborhood Only"
+  },
+  "swaps": [
+    {
+      "id": "swp-101",
+      "title": "Teach Spanish (Intermediate/Conversational) for Help Fixing Bike Brakes",
+      "type": "offer",
+      "category": "language",
+      "offering": "Conversational Spanish practice (1 hr/week), pronunciation coaching & slang",
+      "seeking": "Help tuning up bicycle gear derailleur and replacing front brake pads",
+      "description": "Hola neighbors! I am a native Spanish speaker and love teaching casual conversational skills over tea or at the park. My road bicycle has squeaky brakes and slipping gears—I would love a mechanically handy neighbor to show me how to fix them or tune them together!",
+      "author": {
+        "id": "usr_mateo",
+        "name": "Mateo R.",
+        "neighborhood": "Mission District, San Francisco",
+        "swapsCompleted": 8,
+        "rating": 5.0,
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Master Swapper", "Community Pillar", "Fast Responder"]
+      },
+      "urgency": "flexible",
+      "preferredMeeting": "Mission Dolores Park or Public Library",
+      "mode": "in-person",
+      "createdAt": "2026-09-18T10:30:00Z",
+      "status": "open",
+      "interestedCount": 4
+    },
+    {
+      "id": "swp-102",
+      "title": "Beginner Sourdough Starter & Baking Advice in exchange for Houseplant Repotting",
+      "type": "offer",
+      "category": "gardening",
+      "offering": "Mature 4-year active wild sourdough starter jar, proofing basket loan, and 1-on-1 baking guide",
+      "seeking": "Guidance and hands-on help repotting 4 overgrown Monstera and Ficus indoor plants",
+      "description": "I have been maintaining a lively sourdough starter named 'Bubbles' for 4 years. Happy to share a starter colony and walk you through timing, folding, and crust blistering. Looking for a neighbor who has green thumb experience to help me split and repot large houseplants.",
+      "author": {
+        "id": "usr_clara",
+        "name": "Clara H.",
+        "neighborhood": "Mission District, San Francisco",
+        "swapsCompleted": 12,
+        "rating": 4.9,
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Green Thumb", "Kitchen Alchemist"]
+      },
+      "urgency": "flexible",
+      "preferredMeeting": "Front porch or Community Garden",
+      "mode": "in-person",
+      "createdAt": "2026-09-17T14:15:00Z",
+      "status": "open",
+      "interestedCount": 6
+    },
+    {
+      "id": "swp-103",
+      "title": "Need Help Assembling IKEA Wardrobe — Offering 2 Hours of Math/Science Tutoring",
+      "type": "request",
+      "category": "repair",
+      "offering": "Middle or High School Algebra / Calculus / Physics tutoring (2 full hours)",
+      "seeking": "A physically capable neighbor with an electric drill or patience to help assemble a PAX wardrobe frame",
+      "description": "Just moved into the neighborhood! I teach high school STEM and can help your teen ace upcoming tests or build study confidence. I am struggling to assemble a flat-pack wardrobe on my own and would be super grateful for an extra set of hands for an hour or two.",
+      "author": {
+        "id": "usr_david",
+        "name": "David K.",
+        "neighborhood": "Bedford-Stuyvesant, Brooklyn",
+        "swapsCompleted": 5,
+        "rating": 4.8,
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+        "badges": ["STEM Mentor", "Patient Listener"]
+      },
+      "urgency": "this-week",
+      "preferredMeeting": "Apartment building lobby or open courtyard",
+      "mode": "in-person",
+      "createdAt": "2026-09-18T18:45:00Z",
+      "status": "open",
+      "interestedCount": 3
+    },
+    {
+      "id": "swp-104",
+      "title": "Senior Smartphone, Scams & Digital Literacy Walkthrough for Delicious Homemade Soup",
+      "type": "offer",
+      "category": "digital",
+      "offering": "Patient guidance on smartphone settings, spam filter configuration, video calling family, and photo backup",
+      "seeking": "A warm batch of homemade soup, family recipe, or good neighborhood conversation",
+      "description": "Software developer wanting to give back locally. If you or an older family member get frustrated by smartphones, tablets, or spotting phishing texts, I will happily sit down at the local senior center or library and write large-print cheat sheets!",
+      "author": {
+        "id": "usr_priya",
+        "name": "Priya S.",
+        "neighborhood": "East Austin, Austin",
+        "swapsCompleted": 19,
+        "rating": 5.0,
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Digital Dignity Champion", "5-Star Neighbor", "Generous Heart"]
+      },
+      "urgency": "flexible",
+      "preferredMeeting": "East Austin Public Library or Carver Branch",
+      "mode": "in-person",
+      "createdAt": "2026-09-19T08:00:00Z",
+      "status": "open",
+      "interestedCount": 8
+    },
+    {
+      "id": "swp-105",
+      "title": "Learn Basic Acoustic Guitar & Chords — Seeking Help with Vegetable Patch Weeding",
+      "type": "offer",
+      "category": "music",
+      "offering": "Beginner acoustic guitar coaching: open chords, strumming rhythms, fingerpicking intro",
+      "seeking": "Assistance weeding, mulching, and prepping my raised bed garden for autumn crops",
+      "description": "Played acoustic rhythm guitar for 15 years in indie folk bands. I can have you playing your favorite 3-chord songs in 2 sessions! In return, my back is recovering and I need an energetic neighbor to help pull deep weeds from our community garden plot.",
+      "author": {
+        "id": "usr_elena",
+        "name": "Elena V.",
+        "neighborhood": "Kensington Market, Toronto",
+        "swapsCompleted": 7,
+        "rating": 4.9,
+        "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Creative Soul", "Punctual"]
+      },
+      "urgency": "this-weekend",
+      "preferredMeeting": "Bellevue Square Park or Music Rehearsal Shed",
+      "mode": "in-person",
+      "createdAt": "2026-09-18T16:20:00Z",
+      "status": "open",
+      "interestedCount": 5
+    },
+    {
+      "id": "swp-106",
+      "title": "Need Help Hemming Curtains & Trousers — Offering Resume Review & Mock Tech Interview",
+      "type": "request",
+      "category": "arts",
+      "offering": "Professional resume overhaul, LinkedIn profile optimization, and behavioral interview coaching",
+      "seeking": "Someone with a sewing machine or good hand-stitching skills to hem 2 pairs of slacks and one pair of linen curtains",
+      "description": "I work in career mentoring & talent acquisition. Can provide actionable feedback on your CV to help land entry-level or career transition jobs. Seeking a crafty neighbor who can neatly shorten curtains and pants without charging tailoring salon rates!",
+      "author": {
+        "id": "usr_marcus",
+        "name": "Marcus T.",
+        "neighborhood": "Central / Connaught, New Delhi",
+        "swapsCompleted": 11,
+        "rating": 4.95,
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Career Mentor", "Fast Communicator"]
+      },
+      "urgency": "this-week",
+      "preferredMeeting": "Oxford Bookstore Cafe or Central Park Bench",
+      "mode": "in-person",
+      "createdAt": "2026-09-16T11:00:00Z",
+      "status": "open",
+      "interestedCount": 4
+    },
+    {
+      "id": "swp-107",
+      "title": "Gentle Yoga & Posture Alignment for Home Plumbing / Leaky Faucet Advice",
+      "type": "offer",
+      "category": "wellness",
+      "offering": "Certified yoga instructor: 60-min restorative yoga, desk worker posture release, breathwork",
+      "seeking": "A neighbor knowledgeable with under-sink pipe fittings to show me how to stop a slow kitchen drip",
+      "description": "Sitting at desks ruins our backs! I teach somatic restorative movement that relieves neck and lower spine tension. Looking for someone with basic plumbing experience so I can fix my faucet without buying useless parts or spending hundreds on emergency call-outs.",
+      "author": {
+        "id": "usr_amara",
+        "name": "Amara N.",
+        "neighborhood": "Bedford-Stuyvesant, Brooklyn",
+        "swapsCompleted": 14,
+        "rating": 5.0,
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Wellness Ally", "Reliable Swapper"]
+      },
+      "urgency": "flexible",
+      "preferredMeeting": "Herbert Von King Park or Community Cultural Center",
+      "mode": "in-person",
+      "createdAt": "2026-09-17T09:30:00Z",
+      "status": "open",
+      "interestedCount": 7
+    },
+    {
+      "id": "swp-108",
+      "title": "Need Help Diagnosing Car Battery/Alternator — Offering Basic WordPress or Portfolio Setup",
+      "type": "request",
+      "category": "repair",
+      "offering": "Setup a custom clean personal portfolio, blog, or local small business landing page",
+      "seeking": "Neighbor with multimeter/jumper setup to help diagnose why my Honda Civic battery drains overnight",
+      "description": "My car struggles to start after sitting 2 days. Hoping a neighborhood car enthusiast can test the alternator output with me. In return, I'll happily build or debug your personal website, portfolio, or online resume on WordPress or Notion!",
+      "author": {
+        "id": "usr_kenji",
+        "name": "Kenji O.",
+        "neighborhood": "Mission District, San Francisco",
+        "swapsCompleted": 6,
+        "rating": 4.85,
+        "avatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&q=80",
+        "badges": ["Web Wizard", "Helpful Peer"]
+      },
+      "urgency": "urgent",
+      "preferredMeeting": "Valencia St Community Parking Plaza",
+      "mode": "in-person",
+      "createdAt": "2026-09-19T06:15:00Z",
+      "status": "open",
+      "interestedCount": 3
+    }
+  ],
+  "meetupSpots": [
+    { "name": "Local Public Library (Branch Meeting Area)", "type": "Safe Public", "badge": "Staff Present • Free Wi-Fi" },
+    { "name": "Neighborhood Community Center / Senior Annex", "type": "Community Space", "badge": "Accessible • Public Desks" },
+    { "name": "District Town Square or Civic Park Bench", "type": "Open Air", "badge": "Daylight • High Visibility" },
+    { "name": "Independent Coffee Shop or Bakery", "type": "Casual Public", "badge": "Seating • Warm Atmosphere" }
+  ],
+  "impactStats": {
+    "hoursExchanged": 1420,
+    "moneySavedEstimateUSD": 42600,
+    "neighborsConnected": 840,
+    "activeNeighborhoods": 12,
+    "communityResilienceScore": "94/100"
+  },
+  "chats": [
+    {
+      "id": "chat_mateo",
+      "partnerId": "usr_mateo",
+      "partnerName": "Mateo R.",
+      "partnerAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+      "partnerNeighborhood": "Mission District, San Francisco",
+      "swapId": "swp-101",
+      "swapTitle": "Teach Spanish for Help Fixing Bike Brakes",
+      "agreement": {
+        "status": "proposed",
+        "terms": "Mateo offers 1 Hour Conversational Spanish in exchange for Jordan adjusting brake calipers and rear gear cable.",
+        "location": "Mission Dolores Park (near tennis courts)",
+        "date": "This Saturday, 11:00 AM",
+        "proposedBy": "usr_mateo"
+      },
+      "messages": [
+        {
+          "id": "msg-1",
+          "senderId": "usr_mateo",
+          "text": "Hola Jordan! I saw you have some bike repair experience. Are you still interested in exchanging Spanish conversational practice?",
+          "timestamp": "2026-09-18T11:00:00Z"
+        },
+        {
+          "id": "msg-2",
+          "senderId": "usr_me",
+          "text": "Hey Mateo! Yes, absolutely. I have all the hex wrenches and cable pullers. We can adjust the calipers and cable tension easily in 45 minutes!",
+          "timestamp": "2026-09-18T11:05:00Z"
+        },
+        {
+          "id": "msg-3",
+          "senderId": "usr_mateo",
+          "text": "¡Estupendo! I proposed a formal SkillSwap agreement for Saturday at 11am in Dolores Park. Feel free to review and accept whenever you're ready.",
+          "timestamp": "2026-09-18T11:10:00Z"
+        }
+      ]
+    },
+    {
+      "id": "chat_clara",
+      "partnerId": "usr_clara",
+      "partnerName": "Clara H.",
+      "partnerAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+      "partnerNeighborhood": "Mission District, San Francisco",
+      "swapId": "swp-102",
+      "swapTitle": "Sourdough Starter for Plant Repotting",
+      "agreement": null,
+      "messages": [
+        {
+          "id": "msg-10",
+          "senderId": "usr_clara",
+          "text": "Hi Jordan! Sourdough Bubbles is ready for a new home. How large are your Monstera pots?",
+          "timestamp": "2026-09-17T15:20:00Z"
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "fromName": "Carlos M.",
+      "toName": "Mateo R.",
+      "swapTitle": "Spanish coaching for carpentry help",
+      "rating": 5,
+      "comment": "Mateo is so patient and encouraging! We met at the library cafe. My conversational confidence improved in just one afternoon.",
+      "badge": "Patient Guide",
+      "date": "2 weeks ago"
+    },
+    {
+      "id": "rev-2",
+      "fromName": "Sarah T.",
+      "toName": "Priya S.",
+      "swapTitle": "Grandmother's phone setup for pumpkin bread",
+      "rating": 5,
+      "comment": "Priya helped my 82-year-old grandmother set up large fonts and taught her how to video call her grandkids. An absolute angel in our neighborhood.",
+      "badge": "Digital Dignity Champion",
+      "date": "3 days ago"
+    }
+  ]
+}
+
