@@ -6,7 +6,7 @@
 
 **"People exchange skills, not just money."**
 
-*A hyper-accessible, privacy-first mutual aid web platform connecting neighbors to exchange skills and services without financial barriers.*
+_A hyper-accessible, privacy-first mutual aid web platform connecting neighbors to exchange skills and services without financial barriers._
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -41,14 +41,18 @@
 ## 💡 Problem Statement & Solution
 
 ### ⚠️ The Problem
+
 Traditional gig economy platforms monetize human cooperation:
+
 - **Steep platform commissions** (up to 20–30%) and surge pricing lock out lower-income households.
 - **Invasive location tracking** forces users to broadcast precise home addresses and GPS coordinates.
 - **Heavy web apps** fail entirely on low-bandwidth rural connections (2G/3G) or affordable smartphones.
 - **Social isolation & loneliness** thrive in disconnected neighborhoods where residents lack organic avenues to help each other.
 
 ### 💡 The Solution: SkillSwap Local
+
 **SkillSwap Local** eliminates financial barriers by transforming time and skill into community currency:
+
 - **1 Hour of Help = 1 TimeBank Hour**: Teach someone Spanish for an hour, earn +1 TimeBank Hour, and spend it having your bicycle repaired. Zero money changes hands.
 - **Zero Location Dependencies**: Absolutely no GPS, addresses, or city surveillance. Matches are made via **Availability** and **Skill Compatibility**.
 - **Universal Accessibility**: First-class Low-Bandwidth Mode (text-first, strips heavy assets for 2G/3G), High Contrast, Dynamic Font Scaling, and OpenDyslexic typography.
@@ -72,10 +76,12 @@ Traditional gig economy platforms monetize human cooperation:
 ## ✨ Key Features
 
 ### 🔄 Pure Skill Barter & TimeBank Engine
+
 - **No Cash, No Commission**: All exchanges are peer-to-peer mutual aid.
 - **Auditable TimeBank Ledger**: Every completed swap automatically updates Jordan's balance and records an immutable transaction entry in the member dashboard.
 
 ### 🤖 Smart Matchmaking Engine (Algorithmic Compatibility)
+
 - Intelligent scoring algorithm calculates compatibility between what you offer and what other members seek.
 - Highlights high-confidence matches (e.g., **92% Compatibility with Mateo R.**) with explicit algorithmic breakdown:
   - Skill overlap (Bicycle Repair $\leftrightarrow$ Web Basics / Spanish)
@@ -83,28 +89,33 @@ Traditional gig economy platforms monetize human cooperation:
   - Community trust score (4.9/5.0 with 17 verified swaps)
 
 ### 🛡️ Trust & Safety Cards
+
 - Public profile trust cards with verified member badges, community endorsements, average ratings, and completed swap counters.
 - Built-in one-click **Report** and **Block** actions for immediate safety enforcement.
 
 ### 💬 In-App Chat & Digital Handshake Agreement
+
 - Turn-by-turn interactive chat drawer with simulated real-time neighbor responses.
 - Explicit **Swap Agreement Card**:
-  - Clear breakdown of: *"You provide"* vs *"You receive"*.
+  - Clear breakdown of: _"You provide"_ vs _"You receive"_.
   - Handshake confirmation button moving swap state: `Requested` $\rightarrow$ `Connected` $\rightarrow$ `Agreement Accepted` $\rightarrow$ `In Progress` $\rightarrow$ `Completed`.
 - Interactive 5-Star quality review modal that automatically triggers the **+1 TimeBank Hour** reward.
 
 ### ⚡ AI-Assisted Request Creation
+
 - Smart real-time keyword parsing in the "+ Post a Swap" modal.
-- Typing *"Need someone to fix my cycle brake"* auto-detects:
+- Typing _"Need someone to fix my cycle brake"_ auto-detects:
   - Category: `Repair & Practical Skills`
   - Type: `Request`
   - Priority: `🚨 Urgent`
   - Suggested Skill Tags: `Bicycle Repair`, `Brake Repair`, `Cycle Maintenance`
 
 ### 🔔 Notification Center
+
 - Real-time notification drawer with unread counters for swap agreements, messages, and TimeBank credits.
 
 ### 📊 Community Impact Dashboard
+
 - Live community metrics showing **1,248 members**, **3,426 swaps completed**, **5,820 hours banked**, and **₹8.4 Lakh estimated financial savings**.
 - Category distribution charts and verified member reviews wall.
 
@@ -149,6 +160,7 @@ flowchart TD
 ## 🚀 Quick Start Guide
 
 ### Prerequisites
+
 - **Node.js**: v18.0.0 or higher
 - **npm**: v9.0.0 or higher
 
@@ -168,13 +180,16 @@ npm install
 ### 2. Run the Application
 
 #### Development Mode (Concurrent Client & Server)
+
 ```bash
 npm run dev
 ```
+
 - **Frontend Application**: [http://localhost:3000](http://localhost:3000)
 - **Backend API**: [http://localhost:5000](http://localhost:5000)
 
 #### Production Build & Serve
+
 ```bash
 # Build React bundle
 npm run build
@@ -182,6 +197,7 @@ npm run build
 # Start Express server serving production dist/
 npm start
 ```
+
 - **Live App**: [http://localhost:5000](http://localhost:5000)
 
 ---
@@ -190,18 +206,18 @@ npm start
 
 Follow this step-by-step presentation flow during your hackathon demo:
 
-| Step | Action | What to Highlight |
-| :---: | :--- | :--- |
-| **1** | Open `http://localhost:3000` | Point to the Hero Banner: *"People exchange skills, not just money."* Highlight live community stats (3,400+ swaps, ₹8.4L saved). |
-| **2** | Filter & Search | Type `Bicycle` into search bar or filter by `Available Today` and `Repair & Practical`. Show Mateo R.'s listing. |
-| **3** | Smart Matching | Click **"92% Match"** on Mateo's card. Explain how the algorithm calculated mutual skill reciprocity. |
-| **4** | Trust & Safety | Open the listing to inspect Mateo's verified trust card (4.9 rating, 17 swaps, 8 endorsements). |
-| **5** | Chat & Handshake | Click **"Connect"** $\rightarrow$ review reciprocal terms ("You provide" / "You receive") $\rightarrow$ click **"Accept Agreement"**. |
-| **6** | Complete Swap | Click **"Mark Swap as Completed"** $\rightarrow$ submit a 5-star review $\rightarrow$ observe **+1 TimeBank Hour** notification! |
-| **7** | Personal Dashboard | Open **Dashboard** to show Jordan's balance updated to **8 Hours** and view the auditable transaction ledger. |
-| **8** | Accessibility Bar | Toggle **Low-Bandwidth (2G/3G)** (strips heavy graphics) and **High Contrast** modes. |
-| **9** | AI Swap Assistant | Click **"+ Post a Swap"** and type *"Need urgent help fixing my bike"* to show instant auto-tagging. |
-| **10** | Community Impact | Click **"Impact"** to present neighborhood resilience metrics and financial savings. |
+|  Step  | Action                       | What to Highlight                                                                                                                     |
+| :----: | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| **1**  | Open `http://localhost:3000` | Point to the Hero Banner: _"People exchange skills, not just money."_ Highlight live community stats (3,400+ swaps, ₹8.4L saved).     |
+| **2**  | Filter & Search              | Type `Bicycle` into search bar or filter by `Available Today` and `Repair & Practical`. Show Mateo R.'s listing.                      |
+| **3**  | Smart Matching               | Click **"92% Match"** on Mateo's card. Explain how the algorithm calculated mutual skill reciprocity.                                 |
+| **4**  | Trust & Safety               | Open the listing to inspect Mateo's verified trust card (4.9 rating, 17 swaps, 8 endorsements).                                       |
+| **5**  | Chat & Handshake             | Click **"Connect"** $\rightarrow$ review reciprocal terms ("You provide" / "You receive") $\rightarrow$ click **"Accept Agreement"**. |
+| **6**  | Complete Swap                | Click **"Mark Swap as Completed"** $\rightarrow$ submit a 5-star review $\rightarrow$ observe **+1 TimeBank Hour** notification!      |
+| **7**  | Personal Dashboard           | Open **Dashboard** to show Jordan's balance updated to **8 Hours** and view the auditable transaction ledger.                         |
+| **8**  | Accessibility Bar            | Toggle **Low-Bandwidth (2G/3G)** (strips heavy graphics) and **High Contrast** modes.                                                 |
+| **9**  | AI Swap Assistant            | Click **"+ Post a Swap"** and type _"Need urgent help fixing my bike"_ to show instant auto-tagging.                                  |
+| **10** | Community Impact             | Click **"Impact"** to present neighborhood resilience metrics and financial savings.                                                  |
 
 ---
 
@@ -209,12 +225,12 @@ Follow this step-by-step presentation flow during your hackathon demo:
 
 Built from the ground up for low-resource environments and users with diverse abilities:
 
-| Mode | Benefit | Implementation |
-| :--- | :--- | :--- |
+| Mode                      | Benefit                                                                                                        | Implementation                              |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
 | **Low-Bandwidth (2G/3G)** | Text-first rendering, eliminates non-essential graphics, cuts initial data payload for spotty mobile networks. | Zero heavy media load; minimal CSS repaint. |
-| **High Contrast** | Maximizes readability for low-vision users under bright sunlight or impaired vision. | High-contrast WCAG AAA color palette. |
-| **Dynamic Font Scaling** | Toggle `A`, `A+`, `A++` sizing without breaking grid containers or mobile responsiveness. | Root-level font scaling variables. |
-| **OpenDyslexic Font** | Specialized weighted typography to assist readers with dyslexia. | Accessible custom font styling. |
+| **High Contrast**         | Maximizes readability for low-vision users under bright sunlight or impaired vision.                           | High-contrast WCAG AAA color palette.       |
+| **Dynamic Font Scaling**  | Toggle `A`, `A+`, `A++` sizing without breaking grid containers or mobile responsiveness.                      | Root-level font scaling variables.          |
+| **OpenDyslexic Font**     | Specialized weighted typography to assist readers with dyslexia.                                               | Accessible custom font styling.             |
 
 ---
 
@@ -231,18 +247,18 @@ SkillSwap Local treats user privacy as a fundamental human right:
 
 ## 📡 REST API Reference
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/swaps` | Fetch listings with optional `category`, `type`, `search`, `availability`, and `urgentOnly` filters. |
-| `GET` | `/api/swaps/:id` | Fetch specific swap details by ID. |
-| `POST` | `/api/swaps` | Create a new skill swap listing. |
-| `GET` | `/api/swaps/:id/matches` | Get algorithmic smart matches for a specific listing. |
-| `GET` | `/api/user/profile` | Retrieve the authenticated user's profile and TimeBank balance. |
-| `GET` | `/api/user/ledger` | Retrieve full TimeBank audit transaction history. |
-| `POST` | `/api/swaps/:id/complete` | Mark a swap as completed and credit +1 TimeBank Hour. |
-| `GET` | `/api/notifications` | Fetch real-time notification feed. |
-| `POST` | `/api/notifications/read-all` | Mark all notifications as read. |
-| `GET` | `/api/impact` | Community statistics (members, hours exchanged, money saved). |
+| Method | Endpoint                      | Description                                                                                          |
+| :----- | :---------------------------- | :--------------------------------------------------------------------------------------------------- |
+| `GET`  | `/api/swaps`                  | Fetch listings with optional `category`, `type`, `search`, `availability`, and `urgentOnly` filters. |
+| `GET`  | `/api/swaps/:id`              | Fetch specific swap details by ID.                                                                   |
+| `POST` | `/api/swaps`                  | Create a new skill swap listing.                                                                     |
+| `GET`  | `/api/swaps/:id/matches`      | Get algorithmic smart matches for a specific listing.                                                |
+| `GET`  | `/api/user/profile`           | Retrieve the authenticated user's profile and TimeBank balance.                                      |
+| `GET`  | `/api/user/ledger`            | Retrieve full TimeBank audit transaction history.                                                    |
+| `POST` | `/api/swaps/:id/complete`     | Mark a swap as completed and credit +1 TimeBank Hour.                                                |
+| `GET`  | `/api/notifications`          | Fetch real-time notification feed.                                                                   |
+| `POST` | `/api/notifications/read-all` | Mark all notifications as read.                                                                      |
+| `GET`  | `/api/impact`                 | Community statistics (members, hours exchanged, money saved).                                        |
 
 ---
 
@@ -298,6 +314,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more details
 
 **Built with ❤️ for community resilience and mutual aid.**
 
-*"When communities share their skills, everyone prospers."*
+_"When communities share their skills, everyone prospers."_
 
 </div>

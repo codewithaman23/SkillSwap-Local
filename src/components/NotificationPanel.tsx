@@ -153,3 +153,4 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({ isOpen, on
     </div>
   );
 };
+
